@@ -2678,7 +2678,7 @@ my %sentinel_status;
 if(scalar(@SENTINELS)>0){
         foreach(@SENTINELS){
                 my ($host,$port) = split(':',$_);
-		$sock = new IO::Socket::INET(
+		$sock = new IO::Socket::IP(
                 	PeerAddr => $host,
                 	PeerPort => $port,
                 	Proto => 'tcp',
@@ -2705,7 +2705,7 @@ if(scalar(@SENTINELS)>0){
 	}
 } else{
 	# connect using tcp and verify the port is working
-	$sock = new IO::Socket::INET(
+	$sock = new IO::Socket::IP(
   		PeerAddr => $HOSTNAME,
   		PeerPort => $PORT,
   		Proto => 'tcp',
