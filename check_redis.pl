@@ -437,6 +437,7 @@
 # ============================ START OF PROGRAM CODE =============================
 
 use strict;
+use Net::IP;
 use IO::Socket;
 use Time::HiRes;
 use Text::ParseWords;
@@ -2525,6 +2526,10 @@ sub options_setaccess {
     }
     if (defined($o_password) && $o_password) {
 	$PASSWORD = $o_password;
+    }
+    if (defined($o_host)) {
+	# Enclose IPv6 IP address with brackets, since it is later used as host:port
+	$o_host = "[$o_host]" if (Net::IP::ip_is_ipv6($o_host));
     }
     $HOSTNAME = $o_host if defined($o_host);
     $PORT     = $o_port if defined($o_port);
